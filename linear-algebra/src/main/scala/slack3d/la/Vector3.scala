@@ -372,4 +372,7 @@ case class Vector3[A: ClassTag](x: A,
     else
       (xRounded, yRounded, zRounded).toString()
   }
+
+  override def toString: String =
+    ArrayUtil.toString(Array(toArray()))
 }

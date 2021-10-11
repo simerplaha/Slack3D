@@ -1,6 +1,6 @@
 package slack3d.la
 
-import slack3d.la.util.Maths
+import slack3d.la.util.{ArrayUtil, Maths}
 import slack3d.la.util.NumberUtils._
 import spire.algebra.Trig
 import spire.implicits._

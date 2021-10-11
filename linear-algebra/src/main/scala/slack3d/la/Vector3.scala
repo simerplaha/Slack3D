@@ -160,6 +160,13 @@ case class Vector3[A: ClassTag](x: A,
       z = this.z - vec.z
     )
 
+  def -(vec: Vector4[A]): Vector3[A] =
+    Vector3(
+      x = this.x - vec.x,
+      y = this.y - vec.y,
+      z = this.z - vec.z
+    )
+
   def +(scalar: A): Vector3[A] =
     Vector3(
       x = this.x + scalar,
@@ -175,6 +182,13 @@ case class Vector3[A: ClassTag](x: A,
     )
 
   def +(vec: Vector3[A]): Vector3[A] =
+    Vector3(
+      x = this.x + vec.x,
+      y = this.y + vec.y,
+      z = this.z + vec.z
+    )
+
+  def +(vec: Vector4[A]): Vector3[A] =
     Vector3(
       x = this.x + vec.x,
       y = this.y + vec.y,
@@ -238,6 +252,9 @@ case class Vector3[A: ClassTag](x: A,
   def dot(vec: Vector3[A]): A =
     this.x * vec.x + this.y * vec.y + this.z * vec.z
 
+  def dot(vec: Vector4[A]): A =
+    this.x * vec.x + this.y * vec.y + this.z * vec.z
+
   def lengthSquared(): A =
     this dot this
 
@@ -298,6 +315,36 @@ case class Vector3[A: ClassTag](x: A,
   def is_not_origin(): Boolean =
     !isOrigin()
 
+  /**
+   * Check if a vector equals is almost equal to another one.
+   */
+  def almostEquals(vector: Vector3[A], precision: A): Boolean =
+    if (Maths.abs(this.x - vector.x) > precision ||
+      Maths.abs(this.y - vector.y) > precision ||
+      Maths.abs(this.z - vector.z) > precision) {
+      false
+    } else {
+      true
+    }
+
+  /**
+   * Check if a vector is almost zero
+   */
+  def almostZero(precision: A): Boolean =
+    if (Maths.abs(this.x) > precision || Maths.abs(this.y) > precision || Maths.abs(this.z) > precision) {
+      false
+    } else {
+      true
+    }
+
+  /**
+   * Check if the vector is anti-parallel to another vector.
+   *
+   * @param precision Set to zero for exact comparisons
+   */
+  def isAntiParallelTo(vector: Vector3[A], precision: A): Boolean =
+    this.negate().almostEquals(vector, precision)
+
   def toArray(): Array[A] =
     Array(x, y, z)
 
@@ -341,6 +388,14 @@ case class Vector3[A: ClassTag](x: A,
       case (value, _) =>
         num.abs(value)
     }._2
+
+  def toVector4(w: A): Vector4[A] =
+    Vector4(
+      x = x,
+      y = y,
+      z = z,
+      w = w
+    )
 
   def round(scale: Int) =
     Vector3(

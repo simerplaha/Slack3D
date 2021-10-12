@@ -2,6 +2,7 @@ package slack3d.graphics.shape
 
 import slack3d.algebra.Vector3
 import slack3d.graphics.colour.Colour
+import slack3d.graphics.shape.line.LineOrRay
 
 object Box {
 
@@ -83,9 +84,6 @@ case class Box(back: Plane,
       right.vectors().iterator ++
       top.vectors().iterator ++
       bottom.vectors().iterator
-
-  def toAABB(): AABB =
-    AABB(vectorsIterator())
 
   def width(): Double =
     (left.triangleA.a - right.triangleA.a).length()

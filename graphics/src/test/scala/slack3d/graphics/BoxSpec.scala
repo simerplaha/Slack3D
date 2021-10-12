@@ -1,13 +1,16 @@
 package slack3d.graphics
 
-
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
+import slack3d.TestData._
+import slack3d.algebra.Vector3
+import slack3d.algebra.util.NumberUtils._
+import slack3d.graphics.shape.Box
 
 class BoxSpec extends AnyWordSpec with Matchers {
 
   "cube" in {
-    Play3D(Box())
+    Slack3D(Box())
   }
 
   "unit cube" in {
@@ -37,31 +40,5 @@ class BoxSpec extends AnyWordSpec with Matchers {
         height.roundNum() shouldBe 1
         depth.roundNum() shouldBe 1
     }
-  }
-
-  "half widths" in {
-    val box =
-      Box(widths = Vector3(0.5d, 0.5d, 0.5d))
-
-    val normals =
-      Seq(
-        box.left.triangleA.normalLineFromCentre("Left A"),
-        box.left.triangleB.normalLineFromCentre("Left B"),
-        box.right.triangleA.normalLineFromCentre("Right A"),
-        box.right.triangleB.normalLineFromCentre("Right B"),
-        box.front.triangleA.normalLineFromCentre("Front A"),
-        box.front.triangleB.normalLineFromCentre("Front B"),
-        box.back.triangleA.normalLineFromCentre("Back A"),
-        box.back.triangleB.normalLineFromCentre("Back B"),
-        box.top.triangleA.normalLineFromCentre("Top A"),
-        box.top.triangleB.normalLineFromCentre("Top B"),
-        box.bottom.triangleA.normalLineFromCentre("Bottom A"),
-        box.bottom.triangleB.normalLineFromCentre("Bottom B"),
-      )
-
-    val shapes = normals ++ Seq(box)
-    Play3D(shapes: _*)
-
-
   }
 }

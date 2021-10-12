@@ -1,7 +1,6 @@
-package slack3d.core.util
+package slack3d.algebra.util
 
 import spire.algebra.Trig
-import spire.implicits._
 import spire.math.Numeric
 
 object Maths {

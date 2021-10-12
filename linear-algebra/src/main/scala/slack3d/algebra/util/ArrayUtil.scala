@@ -1,4 +1,4 @@
-package slack3d.core.util
+package slack3d.algebra.util
 
 object ArrayUtil {
 

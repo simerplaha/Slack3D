@@ -1,4 +1,4 @@
-package slack3d.core.util
+package slack3d.algebra.util
 
 import spire.math.Numeric
 
@@ -9,7 +9,7 @@ object NumberUtils {
       num.fromBigDecimal(Maths.round(number = num.toDouble(number), scale = scale))
 
     def roundNumToString(scale: Int = 2)(implicit num: Numeric[A]): String =
-      if(num.toDouble(number).isNaN)
+      if (num.toDouble(number).isNaN)
         "NaN"
       else
         this.roundNum(scale).toString

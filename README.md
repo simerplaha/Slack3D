@@ -12,7 +12,16 @@ Simple 3D graphics engine. This library allows rendering geometric shapes with e
 - Out of the box Shapes - Vector, Box, Circle, Cone, Cylinder, HeightField, Plane, Point, Pyramid, Sphere, Tetrahedron,
   Triangle, Line & Ray
 - OpenGL via LWJGL3
+- User input to transform and rotate shapes.
+- Basic linear algerbra library
 - Immutable API
+
+## Key controls
+
+- Hit pause to pause current animation
+- Hit enter to return to initial camera view
+- W, A, S, D - Move along the 3D axis
+- Click mouse to change camera view position
 
 ## Setup
 
@@ -31,7 +40,7 @@ the "Build and run" window.
 
 Slack3D can be thought of a collection instance where your code provide shapes to render for each frame.
 
-The following will render a red cube.
+Render a red cube.
 
 ```scala
 Slack3D("My Box") foreach {
@@ -45,7 +54,7 @@ Slack3D("My Box") foreach {
 
 ## Rotation
 
-This applies Y axis rotation to the above the box.
+Apply Y axis rotation to the box.
 
 ```scala
 Slack3D("Rotating Box") foreach {
@@ -64,36 +73,50 @@ Rotation can be applied to all axis. See APIs
 
 ## Lines/Vectors
 
-This creates 2 vectors and the third vector is a cross product.
+Create 2 vectors where the third vector is a cross product.
 
 ```scala
 Slack3D("My rotation Box") foreach {
   state =>
-    //Line1
-    val line1 =
-      Line(
-        from = Vector3.origin[Double](),
-        to = Vector3(0.5, -0.5),
-        colour = Colour.Yellow
-      )
-
-    //Line2
-    val line2 =
-      Line(
-        from = Vector3.origin[Double](),
-        to = Vector3(0.5, 0.5),
-        colour = Colour.Red
-      )
-
+    //vector1
+    val vector1 = Vector3(0.5, -0.5, 0)
+    //vector2
+    val vector2 = Vector3(0.5, 0.5, 0)
     //cross product
-    val crossLine =
-      Line(
-        line1.vector() cross line2.vector(),
-        colour = Colour.Green
-      )
+    val cross = vector1 cross vector2
 
-    Seq(line1, line2, crossLine)
+    Seq(
+      Line(vector1, Colour.Red),
+      Line(vector2, Colour.Yellow),
+      Line(cross, Colour.Green),
+    )
 }
 ```
 
 ![img.png](docs/cross_product_vectors.png)
+
+All `Lines` and `Points` will render a text displaying the position and length of that vector.
+
+## Moving shapes with user input
+
+TODO
+
+## Axis angle rotation
+
+TODO
+
+## Generating meshes
+
+TODO
+
+## Custom shapes
+
+TODO
+
+## Linear algebra
+
+TODO
+
+## Colours
+
+TODO

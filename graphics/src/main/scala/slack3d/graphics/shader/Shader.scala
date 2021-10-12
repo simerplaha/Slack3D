@@ -5,25 +5,33 @@ import com.typesafe.scalalogging.LazyLogging
 import org.lwjgl.opengl.{GL11, GL20}
 
 import scala.collection.IndexedSeqView.Slice
+import scala.collection.mutable.ListBuffer
 import scala.util.{Failure, Success}
 
 object Shader extends LazyLogging {
 
-  def apply(shaderType: ShaderType, shaderSources: String*): IO[Throwable, Slice[Shader]] =
-    shaderSources
-      .mapRecoverIO[Shader](
-        block =
-          source =>
+  def apply(shaderType: ShaderType, shaderSources: String*): List[Shader] = {
+    val compiled = ListBuffer.empty[Shader]
+
+    try
+      shaderSources foreach {
+        source =>
+          compiled +=
             compile(
               shaderType = shaderType,
               source = source
-            ),
-        recover =
-          (slice, _) =>
-            slice.foreach(_.delete())
-      )
+            )
+      }
+    catch {
+      case throwable: Throwable =>
+        compiled.foreach(_.delete())
+        throw throwable
+    }
 
-  private def compile(shaderType: ShaderType, source: String): IO[Throwable, Shader] = {
+    compiled.toList
+  }
+
+  private def compile(shaderType: ShaderType, source: String): Shader = {
     val shaderGLType =
       shaderType match {
         case ShaderType.Vertex =>
@@ -35,19 +43,20 @@ object Shader extends LazyLogging {
 
     val shaderId = GL20.glCreateShader(shaderGLType)
 
-    IO.fromTry {
+    try {
       GL20.glShaderSource(shaderId, source)
       GL20.glCompileShader(shaderId)
       fetchCompileErrors(shaderId) match {
         case Some(value) =>
-          Failure(new Exception(value))
+          throw new Exception(value)
 
         case None =>
-          Success(new Shader(shaderType, shaderId))
+          new Shader(shaderType, shaderId)
       }
-    } onLeftSideEffect {
-      _ =>
+    } catch {
+      case exception: Throwable =>
         GL20.glDeleteShader(shaderId)
+        throw exception
     }
   }
 

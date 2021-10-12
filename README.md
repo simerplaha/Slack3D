@@ -26,10 +26,10 @@ Simple 3D graphics engine.
 
 ## Key controls
 
-- Hit pause to pause current animation
-- Hit enter to return to initial camera view
+- Space - Pauses current animation
+- Enter - Return to initial camera view
 - W, A, S, D - Move along the 3D axis
-- Click mouse to change camera view position
+- Mouse drag - Changes camera view position
 
 ## Setup
 

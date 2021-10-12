@@ -1,8 +1,6 @@
 package slack3d.graphics.vertex
 
-
 import org.lwjgl.opengl.{GL11, GL15, GL20, GL30}
-import org.lwjgl.system.CallbackI.V
 import org.lwjgl.system.MemoryUtil
 import slack3d.graphics.data.Vec4
 

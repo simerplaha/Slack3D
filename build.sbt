@@ -70,17 +70,10 @@ lazy val Slack3D =
   (project in file("."))
     .settings(name := "Slack3D")
     .settings(commonSettings)
-    .dependsOn(graphics)
-    .aggregate(graphics)
-    .aggregate(`linear-algebra`)
+    .dependsOn(core)
+    .aggregate(core)
 
-lazy val `linear-algebra` =
-  project
-    .settings(commonSettings)
-    .settings(libraryDependencies ++= commonDependencies)
-
-lazy val graphics =
+lazy val core =
   project
     .settings(commonSettings)
     .settings(libraryDependencies ++= commonDependencies ++ lwjglDependencies)
-    .dependsOn(`linear-algebra`)

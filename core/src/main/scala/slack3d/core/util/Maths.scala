@@ -1,4 +1,4 @@
-package slack3d.la.util
+package slack3d.core.util
 
 import spire.algebra.Trig
 import spire.implicits._

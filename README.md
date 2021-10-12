@@ -55,8 +55,8 @@ Slack3D("Rotating Box") foreach {
     Seq(box)
 }
 ```
-![Bunny.gif](docs/cube_rotate.gif)
+![Cube_rotate.gif](docs/cube_rotate.gif)
 
 Rotation can be applied to all axis. See APIs
 
-![img.png](docs/rotation_api.png)
+![rotation_api.png](docs/rotation_api.png)

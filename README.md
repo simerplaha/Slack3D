@@ -60,6 +60,20 @@ Slack3D("A sphere") foreach {
 
 ![img.png](docs/purple_sphere.png)
 
+## Interval rendering
+
+Render shapes after some time interval. The following will render a `Sphere` of radius `0.5` with a new colour after
+every 1.second.
+
+```scala
+Slack3D("Colour").foreach(interval = 1.second) {
+  _ =>
+    Seq(Sphere(0.5, colour = Colour.next()))
+}
+```
+
+![colour_changing_sphere.gif](docs/colour_changing_sphere.gif)
+
 ## Rotation
 
 Apply Y axis rotation to the box.
@@ -105,12 +119,55 @@ Slack3D("My rotation Box") foreach {
 
 All `Lines` and `Points` will render a text displaying the position and length of that vector.
 
+## Moving shapes with user input
+
+Configures the `Box` to be
+
+- **translatable** when `Z` key is pressed and arrows keys are moved
+- **rotatable** when `X` key is pressed and arrows keys are moved
+
+```scala
+Slack3D("Custom rotation").foldLeft(Box()) {
+  case (_box, state) =>
+    val box =
+      _box
+        .translatable(state.window, GLFW.GLFW_KEY_Z) //translate box when Z key is pressed
+        .rotatable(state.window, GLFW.GLFW_KEY_X) //rotate box when X key is pressed
+
+    (box, Seq(box))
+}
+```
+
+![custom_rotate.gif.png](docs/custom_rotate.gif)
+
 ## Colours
 
 Each shape on create will pick the next colour in queue. All OpenGL colours can be found class
 type [Colour](/graphics/src/main/scala/slack3d/graphics/colour/Colour.scala).
 
 To get the next colour from the queue use```Colour.next()```
+
+## Configurations
+
+You can change the width, height, title, camera etc. See the following example.
+
+```scala
+Slack3D(
+  title = "My configurations", //window title
+  width = 800, //window width
+  height = 600, //window height
+  backgroundColor = Colour.Orange,
+  enableWireframes = true, //configures OpenGL in wireframes mode. 
+  camera = None, // disable camera or provide your custom instance. See how default works
+  enable2DCoordinates = false, //enables or disables coordinate drawing
+  perspective = None, //perspective view
+  light = None //configures lighting 
+) foreach {
+  state =>
+    //no shapes to render
+    Seq.empty
+}
+```
 
 ## Custom shapes
 
@@ -155,46 +212,3 @@ Slack3D("My custom shape") foreach {
 ```
 
 ![custom_shape.png](docs/custom_shape.png)
-
-## Configuration
-
-You can change the width, height, title, camera etc. See the following example.
-
-```scala
-Slack3D(
-  title = "My configurations", //window title
-  width = 800, //window width
-  height = 600, //window height
-  backgroundColor = Colour.Orange,
-  enableWireframes = true, //configures OpenGL in wireframes mode. 
-  camera = None, // disable camera or provide your custom instance. See how default works
-  enable2DCoordinates = false, //enables or disables coordinate drawing
-  perspective = None, //perspective view
-  light = None //configures lighting 
-) foreach {
-  state =>
-    //no shapes to render
-    Seq.empty
-}
-```
-
-## Moving shapes with user input
-
-Configures the `Box` to be 
-- **translatable** when `Z` key is pressed and arrows keys are moved 
-- **rotatable** when `X` key is pressed and arrows keys are moved
-
-```scala
-Slack3D("Custom rotation").foldLeft(Box()) {
-  case (_box, state) =>
-    val box =
-      _box
-        .translatable(state.window, GLFW.GLFW_KEY_Z) //translate box when Z key is pressed
-        .rotatable(state.window, GLFW.GLFW_KEY_X) //rotate box when X key is pressed
-
-    (box, Seq(box))
-}
-```
-
-![custom_rotate.gif.png](docs/custom_rotate.gif)
-

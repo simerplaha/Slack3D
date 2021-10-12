@@ -1,3 +1,5 @@
+import xerial.sbt.Sonatype.GitHubHosting
+
 val scalaParallelCollectionsVersion = "1.0.3"
 val lwjglVersion = "3.2.3"
 val scalaTestVersion = "3.2.9"
@@ -23,11 +25,26 @@ val scalaOptions =
 lazy val commonSettings =
   Seq(
     organization := "com.github.simerplaha",
+    version := "0.1.0",
     scalaVersion := scalaVersion.value,
     scalaVersion in ThisBuild := scala213,
     parallelExecution in ThisBuild := false,
     scalacOptions ++= scalaOptions
   )
+
+val publishSettings = Seq[Setting[_]](
+  crossScalaVersions := Seq(scala213),
+  sonatypeProfileName := "com.github.simerplaha",
+  publishMavenStyle := true,
+  licenses := Seq("APL2" -> url("http://www.apache.org/licenses/LICENSE-2.0.txt")),
+  publish := {},
+  publishLocal := {},
+  sonatypeProjectHosting := Some(GitHubHosting("simerplaha", "Slack3D", "simer.j@gmail.com")),
+  developers := List(
+    Developer(id = "simerplaha", name = "Simer Plaha", email = "simer.j@gmail.com", url = url("https://github.com/simerplaha/Slack3D"))
+  ),
+  publishTo := sonatypePublishTo.value
+)
 
 lazy val operatingSystem =
   System.getProperty("os.name").toLowerCase match {
@@ -70,6 +87,7 @@ lazy val Slack3D =
   (project in file("."))
     .settings(name := "Slack3D")
     .settings(commonSettings)
+    .settings(publishSettings)
     .dependsOn(graphics)
     .aggregate(graphics)
     .aggregate(`linear-algebra`)

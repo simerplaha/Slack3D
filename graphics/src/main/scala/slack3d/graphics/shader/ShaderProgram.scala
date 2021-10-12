@@ -3,9 +3,11 @@ package slack3d.graphics.shader
 import com.typesafe.scalalogging.LazyLogging
 import org.lwjgl.opengl.{GL11, GL20}
 
+import scala.util.{Failure, Try}
+
 object ShaderProgram extends LazyLogging {
 
-  def apply(shaders: Shader*): ShaderProgram = {
+  def apply(shaders: Shader*): Try[ShaderProgram] = {
     val programId = GL20.glCreateProgram()
 
     shaders foreach {
@@ -15,7 +17,7 @@ object ShaderProgram extends LazyLogging {
 
     GL20.glLinkProgram(programId)
 
-    try {
+    Try {
       fetchLinkingErrors(programId) match {
         case Some(value) =>
           throw new Exception(value)
@@ -28,10 +30,10 @@ object ShaderProgram extends LazyLogging {
             shaders = shaders
           )
       }
-    } catch {
+    } recoverWith {
       case throwable: Throwable =>
         shaders.foreach(_.delete())
-        throw throwable
+        Failure(throwable)
     }
   }
 
@@ -53,6 +55,9 @@ object ShaderProgram extends LazyLogging {
 class ShaderProgram(val id: Int,
                     shaders: Seq[Shader]) {
 
-  def use(): Unit =
+  def use(): ShaderProgram = {
     GL20.glUseProgram(id)
+    this
+  }
+
 }

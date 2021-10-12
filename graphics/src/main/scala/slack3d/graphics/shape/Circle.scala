@@ -1,7 +1,9 @@
 package slack3d.graphics.shape
 
-import slack3d.algebra.Vector3
+import slack3d.algebra.util.Maths
+import slack3d.algebra.{Matrix3, Vector3}
 import slack3d.graphics.colour.Colour
+import slack3d.graphics.shape.line.LineOrRay
 import spire.implicits._
 
 object Circle {
@@ -68,10 +70,10 @@ case class Circle private(center: Vector3[Double],
     triangles.flatMap(_.vectors())
 
   def area(): Double =
-    Maths.PI_FLOAT * Math.pow(radius(), 2)
+    Math.PI * Math.pow(radius(), 2)
 
   def circumference(): Double =
-    2 * Maths.PI_FLOAT * radius()
+    2 * Math.PI * radius()
 
   def radius(): Double = {
     val nonCenterVertices = center furthest triangles(0).vectors()

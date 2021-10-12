@@ -2,7 +2,7 @@ package slack3d.graphics.shape.line
 
 import slack3d.algebra.Vector3
 import slack3d.graphics.colour.Colour
-import slack3d.graphics.shape.Shape
+import slack3d.graphics.shape.{Cone, Shape, Text}
 
 trait LineOrRay extends Shape {
   def from: Vector3[Double]

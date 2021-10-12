@@ -6,14 +6,14 @@ import org.lwjgl.opengl.{GL11, GL20}
 
 import scala.collection.IndexedSeqView.Slice
 import scala.collection.mutable.ListBuffer
-import scala.util.{Failure, Success}
+import scala.util.{Failure, Success, Try}
 
 object Shader extends LazyLogging {
 
-  def apply(shaderType: ShaderType, shaderSources: String*): List[Shader] = {
+  def apply(shaderType: ShaderType, shaderSources: String*): Try[List[Shader]] = {
     val compiled = ListBuffer.empty[Shader]
 
-    try
+    Try {
       shaderSources foreach {
         source =>
           compiled +=
@@ -22,13 +22,13 @@ object Shader extends LazyLogging {
               source = source
             )
       }
-    catch {
-      case throwable: Throwable =>
-        compiled.foreach(_.delete())
-        throw throwable
-    }
+      compiled.toList
 
-    compiled.toList
+    } recoverWith {
+      error =>
+        compiled.foreach(_.delete())
+        Failure(error)
+    }
   }
 
   private def compile(shaderType: ShaderType, source: String): Shader = {

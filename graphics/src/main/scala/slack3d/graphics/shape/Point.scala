@@ -2,6 +2,7 @@ package slack3d.graphics.shape
 
 import slack3d.algebra.{Vector2, Vector3}
 import slack3d.graphics.colour.Colour
+import slack3d.graphics.shape.line.LineOrRay
 
 object Point {
 

@@ -1,6 +1,8 @@
 package slack3d.graphics.shape.line
 
+import slack3d.algebra.{Vector2, Vector3}
 import slack3d.graphics.colour.Colour
+import slack3d.graphics.shape.{Cone, Mesh, Point, Text, Triangle}
 
 object Ray {
 

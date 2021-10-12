@@ -2,6 +2,7 @@ package slack3d.graphics.shape
 
 import slack3d.algebra.Vector3
 import slack3d.graphics.colour.Colour
+import slack3d.graphics.shape.line.{Line, LineOrRay}
 
 /**
  * NOTE: MAKE SURE ALL LINES HAVE 'showCoordinate' DISABLED OTHERWISE IT RESULTS IN NESTED LOOP CAUSING STACKOVERFLOW.

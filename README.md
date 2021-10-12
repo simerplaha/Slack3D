@@ -101,40 +101,100 @@ Slack3D("My rotation Box") foreach {
 }
 ```
 
-![img.png](docs/cross_product_vectors.png)
+![cross_product_vectors.png](docs/cross_product_vectors.png)
 
 All `Lines` and `Points` will render a text displaying the position and length of that vector.
 
-
 ## Colours
 
-TODO
+Each shape on create will pick the next colour in queue. All OpenGL colours can be found class
+type [Colour](/graphics/src/main/scala/slack3d/graphics/colour/Colour.scala).
 
+To get the next colour from the queue use```Colour.next()```
 
 ## Custom shapes
 
-TODO
+All shapes are a combination of primitives `Triangle`, `Line` or a `Point`.
 
-## Custom lighting
+```scala
+/**
+ * A custom shape that render text and a line
+ */
+case class MyCustomShape(text: Text,
+                         line: Cylinder) extends Shape {
 
-TODO
+  override type Self = MyCustomShape
+
+  //function to apply to each vector on this shape.
+  //this function is used for applying perspective, rotation & translation
+  override def map(f: Vector3[Double] => Vector3[Double]): MyCustomShape =
+    MyCustomShape(
+      text = text.map(f),
+      line = line.map(f)
+    )
+
+  //expands each shape into points, lines and triangles
+  override def buildMesh(mesh: Mesh[Point, LineOrRay, Triangle]): Unit = {
+    text buildMesh mesh
+    line buildMesh mesh
+  }
+}
+
+//Start Slack3D instance and render the above custom shape
+Slack3D("My custom shape") foreach {
+  state =>
+    //create my custom shape instance
+    val myShape =
+      MyCustomShape(
+        text = Text("My custom shape text", Colour.White) * 2 + Vector3(-0.6, 0.4), //a scaled & translated custom text
+        line = Cylinder(Colour.Purple) / 2 //A scaled down cylinder
+      )
+
+    Seq(myShape)
+}
+```
+
+![custom_shape.png](docs/custom_shape.png)
+
+## Configuration
+
+You can change the width, height, title, camera etc. See the following example.
+
+```scala
+Slack3D(
+  title = "My configurations", //window title
+  width = 800, //window width
+  height = 600, //window height
+  backgroundColor = Colour.Orange,
+  enableWireframes = true, //configures OpenGL in wireframes mode. 
+  camera = None, // disable camera or provide your custom instance. See how default works
+  enable2DCoordinates = false, //enables or disables coordinate drawing
+  perspective = None, //perspective view
+  light = None //configures lighting 
+) foreach {
+  state =>
+    //no shapes to render
+    Seq.empty
+}
+```
 
 ## Moving shapes with user input
 
-TODO
+Configures the `Box` to be 
+- **translatable** when `Z` key is pressed and arrows keys are moved 
+- **rotatable** when `X` key is pressed and arrows keys are moved
 
-## Axis angle rotation
+```scala
+Slack3D("Custom rotation").foldLeft(Box()) {
+  case (_box, state) =>
+    val box =
+      _box
+        .translatable(state.window, GLFW.GLFW_KEY_Z) //translate box when Z key is pressed
+        .rotatable(state.window, GLFW.GLFW_KEY_X) //rotate box when X key is pressed
 
-TODO
+    (box, Seq(box))
+}
+```
 
-## `Meshable` type
+![custom_rotate.gif.png](docs/custom_rotate.gif)
 
-TODO
-
-## Camera setting
-
-TODO
-
-## Linear algebra
-
-TODO

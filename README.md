@@ -13,7 +13,7 @@ Simple 3D graphics engine. This library allows rendering geometric shapes with e
   Triangle, Line & Ray
 - OpenGL via LWJGL3
 - User input to transform and rotate shapes.
-- Basic linear algerbra library
+- Basic linear algebra library
 - Immutable API
 
 ## Key controls
@@ -88,7 +88,7 @@ Slack3D("My rotation Box") foreach {
     Seq(
       Line(vector1, Colour.Red),
       Line(vector2, Colour.Yellow),
-      Line(cross, Colour.Green),
+      Line(cross, Colour.Green)
     )
 }
 ```
@@ -96,6 +96,10 @@ Slack3D("My rotation Box") foreach {
 ![img.png](docs/cross_product_vectors.png)
 
 All `Lines` and `Points` will render a text displaying the position and length of that vector.
+
+## Custom shapes
+
+TODO
 
 ## Moving shapes with user input
 
@@ -105,18 +109,14 @@ TODO
 
 TODO
 
-## Generating meshes
-
-TODO
-
-## Custom shapes
-
-TODO
-
-## Linear algebra
+## `Meshable`
 
 TODO
 
 ## Colours
+
+TODO
+
+## Linear algebra
 
 TODO

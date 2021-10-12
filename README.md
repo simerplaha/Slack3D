@@ -21,7 +21,7 @@ Simple 3D graphics engine.
   Triangle, Line & Ray
 - OpenGL via LWJGL3
 - User input to transform and rotate shapes.
-- Basic linear algebra library
+- Basic linear algebra library - `Matrix3`, `Matrix2`, `Vector3` & `Vector2`
 - Immutable API
 
 ## Key controls

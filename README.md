@@ -74,6 +74,9 @@ Slack3D("Colour").foreach(interval = 1.second) {
 
 ![colour_changing_sphere.gif](docs/colour_changing_sphere.gif)
 
+All OpenGL colours can be found class type [Colour](/graphics/src/main/scala/slack3d/graphics/colour/Colour.scala). To
+get the next colour from a randomly sorted colour queue use```Colour.next()```
+
 ## Rotation
 
 Apply Y axis rotation to the box.
@@ -139,13 +142,6 @@ Slack3D("Custom rotation").foldLeft(Box()) {
 ```
 
 ![custom_rotate.gif.png](docs/custom_rotate.gif)
-
-## Colours
-
-Each shape on create will pick the next colour in queue. All OpenGL colours can be found class
-type [Colour](/graphics/src/main/scala/slack3d/graphics/colour/Colour.scala).
-
-To get the next colour from the queue use```Colour.next()```
 
 ## Configurations
 

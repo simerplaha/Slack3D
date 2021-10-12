@@ -4,7 +4,7 @@ Simple 3D graphics engine. This library allows rendering geometric shapes with e
 
 ![Bunny.gif](docs/bunny.gif)
 
-# Overview
+# Features
 
 - Phong lighting
 - Fly style camera - Freely move around a 3D scene

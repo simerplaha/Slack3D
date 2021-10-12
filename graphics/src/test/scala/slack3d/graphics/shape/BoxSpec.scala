@@ -1,11 +1,11 @@
-package slack3d.graphics
+package slack3d.graphics.shape
 
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 import slack3d.TestData._
 import slack3d.algebra.Vector3
 import slack3d.algebra.util.NumberUtils._
-import slack3d.graphics.shape.Box
+import slack3d.graphics.Slack3D
 
 class BoxSpec extends AnyWordSpec with Matchers {
 

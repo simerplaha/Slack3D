@@ -48,17 +48,17 @@ the "Build and run" window.
 
 Slack3D can be thought of a collection instance where your code provide shapes to render for each frame.
 
-Render a red cube.
+Render a sphere of radius `0.5` of colour `Purple`.
 
 ```scala
-Slack3D("My Box") foreach {
+Slack3D("A sphere") foreach {
   state => //State of current render
     //shapes to render
-    Seq(Box(Colour.Red))
+    Seq(Sphere(radius = 0.5, colour = Colour.Purple))
 }
 ```
 
-![img.png](docs/red_cube.png)
+![img.png](docs/purple_sphere.png)
 
 ## Rotation
 

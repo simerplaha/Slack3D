@@ -1,5 +1,9 @@
 package slack3d.graphics.shape
 
+import slack3d.algebra.{Matrix3, Vector3}
+import slack3d.algebra.util.LazyVal
+import slack3d.graphics.colour.Colour
+import slack3d.graphics.shape.line.LineOrRay
 import spire.implicits._
 
 object Cone {

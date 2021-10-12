@@ -98,7 +98,7 @@ Rotation can be applied to all axis. See APIs
 Create 2 vectors where the third vector is a cross product.
 
 ```scala
-Slack3D("My rotation Box") foreach {
+Slack3D("Lines and vectors") foreach {
   state =>
     //vector1
     val vector1 = Vector3(0.5, -0.5, 0)

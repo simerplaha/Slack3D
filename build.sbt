@@ -104,3 +104,10 @@ lazy val graphics =
     .settings(publishSettings)
     .settings(libraryDependencies ++= commonDependencies ++ lwjglDependencies)
     .dependsOn(`linear-algebra`)
+
+lazy val examples =
+  project
+    .settings(commonSettings)
+    .settings(publishSettings)
+    .settings(libraryDependencies ++= commonDependencies ++ lwjglDependencies)
+    .dependsOn(Slack3D)

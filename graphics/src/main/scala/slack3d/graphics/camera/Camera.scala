@@ -44,7 +44,6 @@ case class Camera(up: Vector3[Double] = Vector3(0.0d, 1.0d, 0.0d),
   def processKeyboardInput(deltaTime: Double,
                            window: Window) = {
     var cameraSpeed = speed * deltaTime
-    // Bonus: if left shift key is pressed, you double the speed!
     if (GLFW.glfwGetKey(window.id, GLFW.GLFW_KEY_LEFT_SHIFT) == GLFW.GLFW_PRESS)
       cameraSpeed *= 2.0d
 

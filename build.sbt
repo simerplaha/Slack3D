@@ -38,7 +38,7 @@ val publishSettings = Seq[Setting[_]](
   publishMavenStyle := true,
   licenses := Seq("APL2" -> url("http://www.apache.org/licenses/LICENSE-2.0.txt")),
   publish := {},
-  publishLocal := {},
+//  publishLocal := {},
   sonatypeProjectHosting := Some(GitHubHosting("simerplaha", "Slack3D", "simer.j@gmail.com")),
   developers := List(
     Developer(id = "simerplaha", name = "Simer Plaha", email = "simer.j@gmail.com", url = url("https://github.com/simerplaha/Slack3D"))

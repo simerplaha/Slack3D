@@ -1,6 +1,14 @@
-# Slack3D
+# Slack3D [![Gitter Chat][gitter-badge]][gitter-link] [![Maven central][maven-badge]][maven-link]
 
-Simple 3D graphics engine. This library allows rendering geometric shapes with ease.
+[gitter-badge]: https://badges.gitter.im/Join%20Chat.svg
+
+[gitter-link]: https://gitter.im/SwayDB-chat/Lobby
+
+[maven-badge]: https://img.shields.io/maven-central/v/com.github.simerplaha/slack3d_2.13.svg
+
+[maven-link]: https://search.maven.org/search?q=g:com.github.simerplaha%20AND%20a:slack3d_2.13
+
+Simple 3D graphics engine.
 
 ![Bunny.gif](docs/bunny.gif)
 
@@ -97,6 +105,12 @@ Slack3D("My rotation Box") foreach {
 
 All `Lines` and `Points` will render a text displaying the position and length of that vector.
 
+
+## Colours
+
+TODO
+
+
 ## Custom shapes
 
 TODO
@@ -113,11 +127,7 @@ TODO
 
 TODO
 
-## `Meshable`
-
-TODO
-
-## Colours
+## `Meshable` type
 
 TODO
 

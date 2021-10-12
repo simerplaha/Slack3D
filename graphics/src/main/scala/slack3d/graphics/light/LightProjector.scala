@@ -1,6 +1,8 @@
 //package slack3d.graphics.light
 //
 //import slack3d.algebra.Vector3
+//import slack3d.graphics.camera.Camera
+//import slack3d.graphics.vertex.Vertex
 //import slack3d.graphics.vertex.Vertex.Triangle
 //
 //trait LightProjector {

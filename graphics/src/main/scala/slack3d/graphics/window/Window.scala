@@ -44,11 +44,11 @@ object Window {
   }
 }
 
-private[play3d] class Window private(val id: Long,
-                                     var width: Int,
-                                     var height: Int,
-                                     var paused: Boolean = false,
-                                     private var pauseTime: Double = 0) extends AutoCloseable {
+private[slack3d] class Window private(val id: Long,
+                                      var width: Int,
+                                      var height: Int,
+                                      var paused: Boolean = false,
+                                      private var pauseTime: Double = 0) extends AutoCloseable {
 
   GLFW.glfwSetFramebufferSizeCallback(
     id,

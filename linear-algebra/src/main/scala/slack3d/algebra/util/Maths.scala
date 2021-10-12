@@ -2,6 +2,7 @@ package slack3d.algebra.util
 
 import spire.algebra.Trig
 import spire.math.Numeric
+import spire.implicits._
 
 object Maths {
 

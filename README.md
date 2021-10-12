@@ -37,7 +37,7 @@ Simple 3D graphics engine.
 libraryDependencies += "com.github.simerplaha" %% "slack3d" % "0.1.0"
 ```
 
-## NOTE
+## LWJGL VM Option
 
 **VM Option**: Allow LWJGL to run on main thread with `-XstartOnFirstThread`. If you are using IntelliJ set the flag in
 the "Build and run" window.
@@ -208,3 +208,9 @@ Slack3D("My custom shape") foreach {
 ```
 
 ![custom_shape.png](docs/custom_shape.png)
+
+# Sponsors
+
+Thank you Jetbrains for providing an open-source licence for their awesome development tools.
+
+<a href="https://www.jetbrains.com/?from=Slack3D" target="_blank"><img src="/docs/jetbrains.png" alt="Jetbrains support" height="150" border="10" /></a>

@@ -2,7 +2,7 @@
 
 [gitter-badge]: https://badges.gitter.im/Join%20Chat.svg
 
-[gitter-link]: https://gitter.im/SwayDB-chat/Lobby
+[gitter-link]: https://gitter.im/Slack3D/community
 
 [maven-badge]: https://img.shields.io/maven-central/v/com.github.simerplaha/slack3d_2.13.svg
 

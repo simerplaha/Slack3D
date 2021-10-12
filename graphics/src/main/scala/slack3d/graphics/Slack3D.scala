@@ -59,7 +59,7 @@ case object Slack3D extends LazyLogging {
   def apply(title: String,
             width: Int = 1600,
             height: Int = 1000,
-            backgroundColor: Colour = Colour(Vec4(0.1d, 0.1d, 0.1d, 1.0d)),
+            backgroundColor: Colour = Colour(0.1d, 0.1d, 0.1d, 1.0d),
             enableWireframes: Boolean = false,
             enable2DCoordinates: Boolean = true,
             camera: Option[Camera] = Some(Camera()),

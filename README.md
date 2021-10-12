@@ -45,7 +45,7 @@ Slack3D("My Box") foreach {
 
 ## Rotation
 
-This applies Y axis rotation to the above the box. 
+This applies Y axis rotation to the above the box.
 
 ```scala
 Slack3D("Rotating Box") foreach {
@@ -55,8 +55,45 @@ Slack3D("Rotating Box") foreach {
     Seq(box)
 }
 ```
+
 ![Cube_rotate.gif](docs/cube_rotate.gif)
 
 Rotation can be applied to all axis. See APIs
 
 ![rotation_api.png](docs/rotation_api.png)
+
+## Lines/Vectors
+
+This creates 2 vectors and the third vector is a cross product.
+
+```scala
+Slack3D("My rotation Box") foreach {
+  state =>
+    //Line1
+    val line1 =
+      Line(
+        from = Vector3.origin[Double](),
+        to = Vector3(0.5, -0.5),
+        colour = Colour.Yellow
+      )
+
+    //Line2
+    val line2 =
+      Line(
+        from = Vector3.origin[Double](),
+        to = Vector3(0.5, 0.5),
+        colour = Colour.Red
+      )
+
+    //cross product
+    val crossLine =
+      Line(
+        line1.vector() cross line2.vector(),
+        colour = Colour.Green
+      )
+
+    Seq(line1, line2, crossLine)
+}
+```
+
+![img.png](docs/cross_product_vectors.png)

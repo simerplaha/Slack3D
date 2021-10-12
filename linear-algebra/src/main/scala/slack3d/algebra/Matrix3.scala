@@ -9,14 +9,6 @@ import scala.reflect.ClassTag
 
 object Matrix3 {
 
-//  implicit class Matrix3Implicits(matrix: Matrix3[Double]) {
-//    @inline def *[S <: Shape](shape: S): S =
-//      shape.map {
-//        vector =>
-//          matrix * vector
-//      }.asInstanceOf[S]
-//  }
-
   //@formatter:off
   def identity[A: ClassTag]()(implicit num: Numeric[A]) =
     Matrix3[A](

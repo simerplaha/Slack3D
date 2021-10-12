@@ -23,17 +23,6 @@ object Isometry3 {
   def apply[A](rotation: Matrix3[A], translation: Vector3[A]): Single[A] =
     new Single[A](rotation, translation)
 
-//  implicit class Isometry3Implicits(isometry: Isometry3[Double]) {
-//    @inline def *[S <: Shape](shape: S): S =
-//      shape.map {
-//        vec =>
-//          isometry.isometries().foldLeft(vec) {
-//            (vector, isometry) =>
-//              (isometry.rotation * vector) + isometry.translation
-//          }
-//      }.asInstanceOf[S]
-//  }
-
   def identity[A: ClassTag]()(implicit num: Numeric[A]): Isometry3[A] =
     Single(
       Matrix3.identity[A](),

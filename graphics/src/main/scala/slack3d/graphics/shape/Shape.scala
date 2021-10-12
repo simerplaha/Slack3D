@@ -1,6 +1,6 @@
 package slack3d.graphics.shape
 
-import slack3d.algebra.{Matrix3, Vector3}
+import slack3d.algebra.{Isometry3, Matrix3, Vector3}
 import slack3d.graphics.window.Window
 import spire.implicits._
 
@@ -11,6 +11,17 @@ object Shape {
       shape.map {
         vector =>
           matrix * vector
+      }.asInstanceOf[S]
+  }
+
+  implicit class Isometry3Implicits(isometry: Isometry3[Double]) {
+    @inline def *[S <: Shape](shape: S): S =
+      shape.map {
+        vec =>
+          isometry.isometries().foldLeft(vec) {
+            (vector, isometry) =>
+              (isometry.rotation * vector) + isometry.translation
+          }
       }.asInstanceOf[S]
   }
 }

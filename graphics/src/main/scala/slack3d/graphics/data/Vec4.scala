@@ -5,7 +5,7 @@ import spire.math.Numeric
 
 import scala.reflect.ClassTag
 
-object Vec4 {
+private[slack3d] object Vec4 {
   def apply[A: ClassTag](vector3: Vector3[A],
                          w: A)(implicit num: Numeric[A]): Vec4[A] =
     Vec4(
@@ -19,7 +19,7 @@ object Vec4 {
 /**
  * OpenGL vector. This is used send data to the GPU
  */
-case class Vec4[A: ClassTag](x: A,
-                             y: A,
-                             z: A,
-                             w: A)(implicit num: Numeric[A])
+private[slack3d] case class Vec4[A: ClassTag](x: A,
+                                              y: A,
+                                              z: A,
+                                              w: A)(implicit num: Numeric[A])

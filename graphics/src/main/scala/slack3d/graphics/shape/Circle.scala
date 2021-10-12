@@ -1,6 +1,5 @@
 package slack3d.graphics.shape
 
-import slack3d.algebra.util.Maths
 import slack3d.algebra.{Matrix3, Vector3}
 import slack3d.graphics.colour.Colour
 import slack3d.graphics.shape.line.LineOrRay

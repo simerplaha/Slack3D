@@ -4,6 +4,17 @@ import slack3d.algebra.{Matrix3, Vector3}
 import slack3d.graphics.window.Window
 import spire.implicits._
 
+object Shape {
+
+  implicit class Matrix3Implicits(matrix: Matrix3[Double]) {
+    @inline def *[S <: Shape](shape: S): S =
+      shape.map {
+        vector =>
+          matrix * vector
+      }.asInstanceOf[S]
+  }
+}
+
 trait Shape extends Meshable {
 
   type Self <: Shape

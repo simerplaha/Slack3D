@@ -7,8 +7,8 @@ Simple 3D graphics engine. This library allows rendering geometric shapes with e
 # Overview
 
 - Phong lighting
-- Fly style camera that allows move around the 3D scene
-- Text rendering
+- Fly style camera - Freely move around a 3D scene
+- Text rendering - English characters and numbers.
 - Out of the box Shapes - Vectors, Box, Circle, Cone, Cylinder, HeightField, Plane, Point, Pyramid, Sphere, Tetrahedron,
   Triangle, Line & Ray
 

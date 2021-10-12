@@ -13,9 +13,6 @@ sealed trait Isometry3[A] {
 
   def *(isometry: Isometry3[A]): Isometry3.Many[A]
 
-//  def perspectiveMultiply(vector: Vector3[A])(implicit num: Numeric[A]): Vector4[A] =
-//    this.*(vector).toVector4(num.negate(vector.z))
-
 }
 
 object Isometry3 {

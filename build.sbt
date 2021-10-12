@@ -84,3 +84,9 @@ lazy val graphics =
     .settings(commonSettings)
     .settings(libraryDependencies ++= commonDependencies ++ lwjglDependencies)
     .dependsOn(`linear-algebra`)
+
+lazy val examples =
+  project
+    .settings(commonSettings)
+    .settings(libraryDependencies ++= commonDependencies)
+    .dependsOn(graphics)

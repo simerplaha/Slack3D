@@ -7,11 +7,11 @@ import slack3d.graphics.Slack3D
 class BunnySpec extends AnyWordSpec with Matchers {
 
   "bunny" in {
-    val bunny = Bunny() * 20
+    val bunny = Bunny() * 5
 
-    Slack3D("").foldLeft(bunny) {
+    Slack3D("", enable2DCoordinates = false).foldLeft(bunny) {
       case (_bunny, state) =>
-        val bunny = _bunny.rotatable(state.window, None, 0.6d)
+        val bunny = _bunny.rotateY(state.getTime() / 15)
         (bunny, Seq(bunny))
     }
   }

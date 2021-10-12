@@ -101,6 +101,10 @@ All `Lines` and `Points` will render a text displaying the position and length o
 
 TODO
 
+## Custom lighting
+
+TODO
+
 ## Moving shapes with user input
 
 TODO
@@ -114,6 +118,10 @@ TODO
 TODO
 
 ## Colours
+
+TODO
+
+## Camera setting
 
 TODO
 

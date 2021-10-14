@@ -1,4 +1,4 @@
-# Slack3D [![Gitter Chat][gitter-badge]][gitter-link] [![Maven central][maven-badge]][maven-link]
+# Slack3D [![Maven central][maven-badge]][maven-link]
 
 [gitter-badge]: https://badges.gitter.im/Join%20Chat.svg
 
@@ -96,6 +96,27 @@ Rotation can be applied to all axis. See APIs
 
 ![rotation_api.png](docs/rotation_api.png)
 
+## Rotation with user inputs
+
+Configures the `Box` to be
+
+- **translatable** when `Z` key is pressed and arrows keys are moved
+- **rotatable** when `X` key is pressed and arrows keys are moved
+
+```scala
+Slack3D("Custom rotation").foldLeft(Box()) {
+  case (_box, state) =>
+    val box =
+      _box
+        .translatable(state.window, GLFW.GLFW_KEY_Z) //translate box when Z key is pressed
+        .rotatable(state.window, GLFW.GLFW_KEY_X) //rotate box when X key is pressed
+
+    (box, Seq(box))
+}
+```
+
+![custom_rotate.gif.png](docs/custom_rotate.gif)
+
 ## Lines/Vectors
 
 Create 2 vectors where the third vector is a cross product.
@@ -121,27 +142,6 @@ Slack3D("Lines and vectors") foreach {
 ![cross_product_vectors.png](docs/cross_product_vectors.png)
 
 All `Lines` and `Points` will render a text displaying the position and length of that vector.
-
-## Moving shapes with user input
-
-Configures the `Box` to be
-
-- **translatable** when `Z` key is pressed and arrows keys are moved
-- **rotatable** when `X` key is pressed and arrows keys are moved
-
-```scala
-Slack3D("Custom rotation").foldLeft(Box()) {
-  case (_box, state) =>
-    val box =
-      _box
-        .translatable(state.window, GLFW.GLFW_KEY_Z) //translate box when Z key is pressed
-        .rotatable(state.window, GLFW.GLFW_KEY_X) //rotate box when X key is pressed
-
-    (box, Seq(box))
-}
-```
-
-![custom_rotate.gif.png](docs/custom_rotate.gif)
 
 ## Configurations
 

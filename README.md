@@ -26,10 +26,10 @@ Simple 3D graphics engine.
 
 ## Key controls
 
-- Space - Pauses current animation
-- Enter - Return to initial camera view
-- W, A, S, D - Move along the 3D axis
+- W, A, S, D - Move along all 3 axes
 - Mouse drag - Changes camera view position
+- Enter - Return to initial camera view
+- Space (Hold!) - Pauses rendering/animation (camera is still active) 
 
 ## Setup
 
@@ -37,9 +37,9 @@ Simple 3D graphics engine.
 libraryDependencies += "com.github.simerplaha" %% "slack3d" % "0.1.0"
 ```
 
-## LWJGL VM Option
+### LWJGL VM Option
 
-**VM Option**: Allow LWJGL to run on main thread with `-XstartOnFirstThread`. If you are using IntelliJ set the flag in
+Allow LWJGL to run on main thread with `-XstartOnFirstThread` in VM options. If you are using IntelliJ set the flag in
 the "Build and run" window.
 
 ![img.png](docs/intellij_vm_option.png)

@@ -194,8 +194,8 @@ case class Plane(triangleA: Triangle,
   override def normal(): Vector3[Double] =
     triangleA.normal()
 
-  def center(): Vector3[Double] =
-    (triangleA.center() + triangleB.center()) / 2d
+  def center: Vector3[Double] =
+    (triangleA.center + triangleB.center) / 2d
 
   def distance(): Double =
     this.normal() dot triangleB.a

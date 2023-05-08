@@ -1,13 +1,15 @@
 import xerial.sbt.Sonatype.GitHubHosting
 
-val scalaParallelCollectionsVersion = "1.0.3"
-val lwjglVersion = "3.2.3"
-val scalaTestVersion = "3.2.9"
+val scalaParallelCollectionsVersion = "1.0.4"
+val lwjglVersion = "3.3.2"
+val scalaTestVersion = "3.2.15"
 val logbackClassicVersion = "1.2.3"
-val scalaLoggingVersion = "3.9.3"
-val spireVersion = "0.17.0"
+val scalaLoggingVersion = "3.9.5"
+val spireVersion = "0.18.0"
 
 val scala213 = "2.13.6"
+val scala3 = "3.2.2"
+lazy val supportedScalaVersions = List(scala213, scala3)
 
 val scalaOptions =
   Seq(
@@ -25,15 +27,16 @@ val scalaOptions =
 lazy val commonSettings =
   Seq(
     organization := "com.github.simerplaha",
-    version := "0.1.0",
+    version := "0.1.1",
     scalaVersion := scalaVersion.value,
-    scalaVersion in ThisBuild := scala213,
-    parallelExecution in ThisBuild := false,
+    ThisBuild/scalaVersion := scala3,
+    crossScalaVersions := supportedScalaVersions,
+    ThisBuild/parallelExecution  := false,
     scalacOptions ++= scalaOptions
   )
 
 val publishSettings = Seq[Setting[_]](
-  crossScalaVersions := Seq(scala213),
+  crossScalaVersions := supportedScalaVersions,
   sonatypeProfileName := "com.github.simerplaha",
   publishMavenStyle := true,
   licenses := Seq("APL2" -> url("http://www.apache.org/licenses/LICENSE-2.0.txt")),

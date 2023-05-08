@@ -24,7 +24,7 @@ import scala.reflect.ClassTag
 
 sealed trait Isometry3[A] {
 
-  def isometries(): Array[Isometry3.Single[A]]
+  def isometries: Array[Isometry3.Single[A]]
 
   def *(vector: Vector3[A]): Vector3[A]
 
@@ -56,14 +56,15 @@ object Isometry3 {
     def *(vector: Vector3[A]): Vector3[A] =
       (rotation * vector) + translation
 
-    override def isometries(): Array[Single[A]] =
+    override def isometries: Array[Single[A]] =
       Array(this)
 
     override def *(isometry: Isometry3[A]): Isometry3.Many[A] =
-      Many(this +: isometry.isometries())
+      Many(this +: isometry.isometries)
   }
 
   case class Many[A] private(isometries: Array[Isometry3.Single[A]]) extends Isometry3[A] {
+
     override def *(vector: Vector3[A]): Vector3[A] =
       isometries.foldLeft(vector) {
         case (vector, iso) =>
@@ -71,6 +72,11 @@ object Isometry3 {
       }
 
     override def *(isometry: Isometry3[A]): Many[A] =
-      Many(this.isometries ++ isometry.isometries())
+      Many(this.isometries ++ isometry.isometries)
+  }
+
+  object Many {
+    def apply[A](isometries: Array[Isometry3.Single[A]]): Many[A] =
+      new Many[A](isometries)
   }
 }

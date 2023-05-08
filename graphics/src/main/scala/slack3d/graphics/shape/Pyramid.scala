@@ -104,7 +104,7 @@ case class Pyramid private(head: Point,
     head.vector +: (left.vectors() ++ front.vectors() ++ right.vectors() ++ back.vectors() ++ base.vectors())
 
   def height() =
-    (head.vector - base.center()).length()
+    (head.vector - base.center).length()
 
   override def map(f: Vector3[Double] => Vector3[Double]): Pyramid =
     Pyramid(

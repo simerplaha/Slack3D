@@ -156,7 +156,7 @@ object Matrix3 {
       )
 
     val translate =
-      Vector3(0, 0, _23)
+      Vector3[Double](0, 0, _23)
 
     Isometry3(
       rotation = rotate,

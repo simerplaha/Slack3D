@@ -27,10 +27,10 @@ import scala.reflect.ClassTag
 object Vector2 {
 
   def origin[A: ClassTag : Numeric](): Vector2[A] =
-    Vector2[A](0, 0)
+    Vector2[A](Numeric[A].fromDouble(0.0), Numeric[A].fromDouble(0.0))
 
   def one[A: ClassTag : Numeric](): Vector2[A] =
-    Vector2[A](1, 1)
+    Vector2[A](Numeric[A].fromDouble(1.0),Numeric[A].fromDouble(1.0))
 
 }
 

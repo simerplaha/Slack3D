@@ -20,6 +20,7 @@ package slack3d.graphics.shape
 import slack3d.algebra.{Isometry3, Matrix3, Vector3}
 import slack3d.graphics.window.Window
 import spire.implicits._
+import slack3d.graphics.shape.Shape._
 
 object Shape {
 
@@ -35,7 +36,7 @@ object Shape {
     @inline def *[S <: Shape](shape: S): S =
       shape.map {
         vec =>
-          isometry.isometries().foldLeft(vec) {
+          isometry.isometries.foldLeft(vec) {
             (vector, isometry) =>
               (isometry.rotation * vector) + isometry.translation
           }
@@ -123,7 +124,8 @@ trait Shape extends Meshable {
         } else {
           val rotationX = Matrix3.rotatorX[Double](Math.toRadians(-vector.y))
           val rotationZ = Matrix3.rotatorZ[Double](Math.toRadians(-vector.x))
-          (rotationX * rotationZ * this).asInstanceOf[Self]
+          val r = (rotationX * rotationZ)
+          (r * this).asInstanceOf[Self]
         }
 
       case None =>

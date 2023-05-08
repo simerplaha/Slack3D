@@ -166,7 +166,7 @@ case class Matrix2[A: ClassTag](_00: A, _01: A,
     invert().transpose()
 
   def negate() =
-    this * -1
+    this * num.fromDouble(-1.0)
 
   //@formatter:off
   def lerp(other: Matrix2[A], factor: A) =

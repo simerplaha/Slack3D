@@ -42,7 +42,7 @@ object Box {
       )
 
     val front =
-      back.setFlipNormal(false) + Vector3(0, 0, 2 * widths.z)
+      back.setFlipNormal(false) + Vector3[Double](0, 0, 2 * widths.z)
 
     val left =
       Plane(
@@ -55,7 +55,7 @@ object Box {
       )
 
     val right =
-      left.setFlipNormal(true) + Vector3(2 * widths.x, 0, 0)
+      left.setFlipNormal(true) + Vector3[Double](2 * widths.x, 0, 0)
 
     val top =
       Plane(
@@ -68,7 +68,7 @@ object Box {
       )
 
     val bottom =
-      top.setFlipNormal(true) + Vector3(0, -(2 * widths.y), 0)
+      top.setFlipNormal(true) + Vector3[Double](0, -(2 * widths.y), 0)
 
     new Box(
       back = back,
@@ -115,7 +115,7 @@ case class Box(back: Plane,
     Array(back, front, left, right, top, bottom)
 
   def center() =
-    (back.center() + front.center() + left.center() + right.center() + top.center() + bottom.center()) / 6
+    (back.center + front.center + left.center + right.center + top.center + bottom.center) / 6
 
   def updateColour(colour: Colour): Box =
     mapPlanes(_.updateColour(colour))

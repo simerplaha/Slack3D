@@ -235,13 +235,13 @@ case class Vector3[A: ClassTag](x: A,
     trig.toDegrees(angleRadian(vec))
 
   def reflect(normal: Vector3[A]): Vector3[A] =
-    (project(normal) * 2) - this
+    (project(normal) * Numeric[A].fromDouble(2)) - this
 
   /**
    * Reflection how it is defined in <a href="https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/reflect.xhtml">OpenGL</a>
    */
   def reflectOpenGL(normal: Vector3[A]): Vector3[A] =
-    this - (normal * ((2: A) * normal.dot(this)))
+    this - (normal * ((Numeric[A].fromDouble(2.0)) * normal.dot(this)))
 
   def project(normal: Vector3[A]): Vector3[A] =
     normal * this.dot(normal)
@@ -256,10 +256,10 @@ case class Vector3[A: ClassTag](x: A,
     this dot this
 
   def length(): A =
-    sqrt(this.lengthSquared())
+    spire.math.sqrt(this.lengthSquared())
 
   def negate(): Vector3[A] =
-    this * -1
+    this * Numeric[A].fromDouble(-1)
 
   def minLength(that: Vector3[A]): Vector3[A] =
     if (this.lengthSquared() < that.lengthSquared())
@@ -394,9 +394,9 @@ case class Vector3[A: ClassTag](x: A,
 
   def toDouble(): Vector3[Double] =
     Vector3(
-      x.toDouble(),
-      y.toDouble(),
-      z.toDouble()
+      x.toDouble,
+      y.toDouble,
+      z.toDouble
     )
 
   def toTuple3Or2String(): String =

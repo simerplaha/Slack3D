@@ -25,7 +25,7 @@ trait NormalisableShape extends Shape {
 
   def normal(): Vector3[Double]
 
-  def center(): Vector3[Double]
+  def center: Vector3[Double]
 
   def normalLine(colour: Colour,
                  text: String) =
@@ -45,7 +45,7 @@ trait NormalisableShape extends Shape {
   def normalLineFromCentre(colour: Colour = Colour.next(),
                            text: Option[String] = None,
                            showVectorInfo: Boolean = true) = {
-    val center = this.center()
+    val center = this.center
     val perpendicular = this.normal() + center
     Line(
       from = center,

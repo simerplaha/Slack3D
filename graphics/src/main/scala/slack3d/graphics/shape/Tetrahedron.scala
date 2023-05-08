@@ -78,7 +78,7 @@ object Tetrahedron {
   }
 }
 
-case class Tetrahedron private(point: Point,
+case class Tetrahedron (point: Point,
                                face1: Triangle,
                                face2: Triangle,
                                face3: Triangle,

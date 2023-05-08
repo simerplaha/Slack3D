@@ -94,7 +94,7 @@ case class Triangle(a: Vector3[Double],
   def vectors() =
     Array(a, b, c)
 
-  def center(): Vector3[Double] =
+  def center: Vector3[Double] =
     (a + b + c) / 3
 
   override def normal(): Vector3[Double] =

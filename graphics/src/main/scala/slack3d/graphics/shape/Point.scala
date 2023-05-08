@@ -25,7 +25,7 @@ object Point {
 
   val DEFAULT_POINT_SIZE = 6f
 
-  implicit val lexOrdering =
+  implicit val lexOrdering: Ordering[Point] =
     new Ordering[Point] {
       override def compare(left: Point, right: Point): Int = {
         val xCompare = left.vector.x compareTo right.vector.x
@@ -197,7 +197,7 @@ object Point {
     }
 }
 
-case class Point private(vector: Vector3[Double],
+case class Point (vector: Vector3[Double],
                          colour: Colour,
                          size: Float,
                          text: Option[Text],

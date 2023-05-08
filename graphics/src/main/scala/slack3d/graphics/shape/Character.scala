@@ -21,6 +21,7 @@ import slack3d.algebra.Vector3
 import slack3d.graphics.colour.Colour
 import slack3d.graphics.shape.line.{Line, LineOrRay}
 
+
 /**
  * NOTE: MAKE SURE ALL LINES HAVE 'showCoordinate' DISABLED OTHERWISE IT RESULTS IN NESTED LOOP CAUSING STACKOVERFLOW.
  */
@@ -35,7 +36,7 @@ object Character {
     characters.zipWithIndex.toArray map {
       case (character, index) =>
         //creates the character at the origin and then scales to reduce to or increase size and then padds it
-        val translator = Vector3(index * xPadding, yPadding, 0) + position
+        val translator = Vector3[Double](index * xPadding, yPadding, 0) + position
 
         character match {
           case '1' =>
@@ -173,7 +174,7 @@ object Character {
             (line(colour) * scale) + translator
 
           case ' ' =>
-            Character(lines = Array.empty, points = Array.empty)
+            Character(lines = Array.empty[Line], points = Array.empty[Point])
 
         }
     }
@@ -185,7 +186,7 @@ object Character {
         Line(fromX = 0, fromY = 0.5d, toX = -0.5d, toY = 0.25d, colour = colour, showCone = false, showVectorInfo = false),
         Line(fromX = -0.5d, fromY = -0.5d, toX = 0.5d, toY = -0.5d, colour = colour, showCone = false, showVectorInfo = false),
       ),
-      points = Array.empty
+      points = Array.empty[Point]
     )
 
   def two(colour: Colour): Character =
@@ -197,7 +198,7 @@ object Character {
         Line(fromX = -0.5d, fromY = 0, toX = -0.5d, toY = -0.5d, colour = colour, showCone = false, showVectorInfo = false),
         Line(fromX = -0.5d, fromY = -0.5d, toX = 0.5d, toY = -0.5d, colour = colour, showCone = false, showVectorInfo = false)
       ),
-      points = Array.empty
+      points = Array.empty[Point]
     )
 
   def three(colour: Colour): Character =
@@ -208,7 +209,7 @@ object Character {
         Line(fromX = 0.5d, fromY = -0.5d, toX = -0.5d, toY = -0.5d, colour = colour, showCone = false, showVectorInfo = false),
         Line(fromX = 0.5d, fromY = 0.5d, toX = 0.5d, toY = -0.5d, colour = colour, showCone = false, showVectorInfo = false)
       ),
-      points = Array.empty
+      points = Array.empty[Point]
     )
 
   def four(colour: Colour): Character =
@@ -218,7 +219,7 @@ object Character {
         Line(fromX = -0.5d, fromY = 0, toX = 0.5d, toY = 0d, colour = colour, showCone = false, showVectorInfo = false),
         Line(fromX = 0.5d, fromY = 0.5d, toX = 0.5d, toY = -0.5d, colour = colour, showCone = false, showVectorInfo = false),
       ),
-      points = Array.empty
+      points = Array.empty[Point]
     )
 
   def five(colour: Colour): Character =
@@ -231,13 +232,13 @@ object Character {
           Line(fromX = 0.5d, fromY = 0d, toX = 0.5d, toY = -0.5d, colour = colour, showCone = false, showVectorInfo = false),
           Line(fromX = 0.5d, fromY = -0.5d, toX = -0.5d, toY = -0.5d, colour = colour, showCone = false, showVectorInfo = false),
         ),
-      points = Array.empty
+      points = Array.empty[Point]
     )
 
   def six(colour: Colour): Character =
     Character(
       five(colour).lines :+ Line(fromX = -0.5d, fromY = 0d, toX = -0.5d, toY = -0.5d, colour = colour, showCone = false, showVectorInfo = false),
-      points = Array.empty
+      points = Array.empty[Point]
     )
 
   def seven(colour: Colour): Character =
@@ -246,13 +247,13 @@ object Character {
         Line(fromX = -0.5d, fromY = 0.5d, toX = 0.5d, toY = 0.5d, colour = colour, showCone = false, showVectorInfo = false),
         Line(fromX = 0.5d, fromY = 0.5d, toX = 0d, toY = -0.5d, colour = colour, showCone = false, showVectorInfo = false),
       ),
-      points = Array.empty
+      points = Array.empty[Point]
     )
 
   def eight(colour: Colour): Character =
     Character(
       three(colour).lines :+ Line(fromX = -0.5d, fromY = 0.5d, toX = -0.5d, toY = -0.5d, colour = colour, showCone = false, showVectorInfo = false),
-      points = Array.empty
+      points = Array.empty[Point]
     )
 
   def nine(colour: Colour): Character =
@@ -263,7 +264,7 @@ object Character {
         Line(fromX = -0.5d, fromY = 0d, toX = -0.5d, toY = 0.5d, colour = colour, showCone = false, showVectorInfo = false),
         Line(fromX = 0.5d, fromY = 0.5d, toX = 0.5d, toY = -0.5d, colour = colour, showCone = false, showVectorInfo = false)
       ),
-      points = Array.empty
+      points = Array.empty[Point]
     )
 
   def zero(colour: Colour): Character =
@@ -275,7 +276,7 @@ object Character {
         Line(fromX = -0.5d, fromY = -0.5d, toX = 0.5d, toY = -0.5d, colour = colour, showCone = false, showVectorInfo = false)
         //        Line(fromX = -0.5d, fromY = 0.5d, toX = 0.5d, toY = -0.5d, colour = colour, showCone = false, showCoordinate = false), //slash
       ),
-      points = Array.empty
+      points = Array.empty[Point]
     )
 
   def comma(colour: Colour): Character =
@@ -283,22 +284,22 @@ object Character {
       Array(
         Line(fromX = 0.0d, fromY = -0.50d, toX = -0.25d, toY = -1d, colour = colour, showCone = false, showVectorInfo = false),
       ),
-      points = Array.empty
+      points = Array.empty[Point]
     )
 
   def dot(position: Vector3[Double], colour: Colour): Character =
     Character(
-      lines = Array.empty,
+      lines = Array.empty[Line],
       points = Array(Point(vector = position, colour = colour, showVectorInfo = false, size = 2))
     )
 
   def semiColon(position: Vector3[Double], colour: Colour): Character =
     Character(
-      lines = Array.empty,
+      lines = Array.empty[Line],
       points =
         Array(
-          Point(vector = position - Vector3(0d, 0.005d, 0), colour = colour, showVectorInfo = false, size = 2),
-          Point(vector = position + Vector3(0d, 0.006d, 0), colour = colour, showVectorInfo = false, size = 2)
+          Point(vector = position - Vector3[Double](0d, 0.005d, 0), colour = colour, showVectorInfo = false, size = 2),
+          Point(vector = position + Vector3[Double](0d, 0.006d, 0), colour = colour, showVectorInfo = false, size = 2)
         )
     )
 
@@ -309,7 +310,7 @@ object Character {
         Line(fromX = -0.4d, fromY = 0.8d, toX = -0.4d, toY = -0.8d, colour = colour, showCone = false, showVectorInfo = false),
         Line(fromX = -0.4d, fromY = -0.8d, toX = 0.25d, toY = -0.8d, colour = colour, showCone = false, showVectorInfo = false)
       ),
-      points = Array.empty
+      points = Array.empty[Point]
     )
 
   def rightBracket(colour: Colour): Character =
@@ -319,7 +320,7 @@ object Character {
         Line(fromX = 0.25d, fromY = 0.8d, toX = 0.25d, toY = -0.8d, colour = colour, showCone = false, showVectorInfo = false),
         Line(fromX = -0.4d, fromY = -0.8d, toX = 0.25d, toY = -0.8d, colour = colour, showCone = false, showVectorInfo = false)
       ),
-      points = Array.empty
+      points = Array.empty[Point]
     )
 
   def equalTo(colour: Colour): Character =
@@ -328,7 +329,7 @@ object Character {
         Line(fromX = 0.5d, fromY = 0.2d, toX = -0.5d, toY = 0.2d, colour = colour, showCone = false, showVectorInfo = false),
         Line(fromX = 0.5d, fromY = -0.2d, toX = -0.5d, toY = -0.2d, colour = colour, showCone = false, showVectorInfo = false)
       ),
-      points = Array.empty
+      points = Array.empty[Point]
     )
 
   def negative(colour: Colour): Character =
@@ -336,7 +337,7 @@ object Character {
       Array(
         Line(fromX = 0.5d, fromY = 0d, toX = -0.5d, toY = 0d, colour = colour, showCone = false, showVectorInfo = false)
       ),
-      points = Array.empty
+      points = Array.empty[Point]
     )
 
   def A(colour: Colour): Character =
@@ -346,7 +347,7 @@ object Character {
         Line(fromX = 0, fromY = 0.5d, toX = 0.5d, toY = -0.5d, colour = colour, showCone = false, showVectorInfo = false),
         Line(fromX = -0.3d, fromY = -0.1d, toX = 0.3d, toY = -0.1d, colour = colour, showCone = false, showVectorInfo = false)
       ),
-      points = Array.empty
+      points = Array.empty[Point]
     )
 
   def B(colour: Colour): Character =
@@ -363,7 +364,7 @@ object Character {
         Line(fromX = 0.3d, fromY = 0.5d, toX = 0.5d, toY = 0.3d, colour = colour, showCone = false, showVectorInfo = false), //slit up
         Line(fromX = 0.3d, fromY = -0.5d, toX = 0.5d, toY = -0.3d, colour = colour, showCone = false, showVectorInfo = false) //slit down
       ),
-      points = Array.empty
+      points = Array.empty[Point]
     )
 
   def C(colour: Colour): Character =
@@ -377,7 +378,7 @@ object Character {
         Line(fromX = 0.3d, fromY = -0.5d, toX = 0.5d, toY = -0.3d, colour = colour, showCone = false, showVectorInfo = false), //bottom to right
         Line(fromX = -0.3d, fromY = -0.5d, toX = 0.3d, toY = -0.5d, colour = colour, showCone = false, showVectorInfo = false),
       ),
-      points = Array.empty
+      points = Array.empty[Point]
     )
 
   def D(colour: Colour): Character =
@@ -390,7 +391,7 @@ object Character {
         Line(fromX = 0.3d, fromY = -0.5d, toX = 0.5d, toY = -0.3d, colour = colour, showCone = false, showVectorInfo = false), //smaller cut bottom
         Line(fromX = -0.5d, fromY = 0.5d, toX = -0.5d, toY = -0.5d, colour = colour, showCone = false, showVectorInfo = false) //left
       ),
-      points = Array.empty
+      points = Array.empty[Point]
     )
 
   def E(colour: Colour): Character =
@@ -401,7 +402,7 @@ object Character {
         Line(fromX = 0.5d, fromY = -0.5d, toX = -0.5d, toY = -0.5d, colour = colour, showCone = false, showVectorInfo = false),
         Line(fromX = -0.5d, fromY = 0.5d, toX = -0.5d, toY = -0.5d, colour = colour, showCone = false, showVectorInfo = false)
       ),
-      points = Array.empty
+      points = Array.empty[Point]
     )
 
   def F(colour: Colour): Character =
@@ -411,7 +412,7 @@ object Character {
         Line(fromX = 0.5d, fromY = 0d, toX = -0.5d, toY = 0d, colour = colour, showCone = false, showVectorInfo = false),
         Line(fromX = -0.5d, fromY = 0.5d, toX = -0.5d, toY = -0.5d, colour = colour, showCone = false, showVectorInfo = false)
       ),
-      points = Array.empty
+      points = Array.empty[Point]
     )
 
   def G(colour: Colour): Character =
@@ -427,7 +428,7 @@ object Character {
         Line(fromX = 0.5d, fromY = 0d, toX = 0.5d, toY = -0.5d, colour = colour, showCone = false, showVectorInfo = false), //right
         Line(fromX = -0.5d, fromY = 0.3d, toX = -0.5d, toY = -0.3d, colour = colour, showCone = false, showVectorInfo = false) //left
       ),
-      points = Array.empty
+      points = Array.empty[Point]
     )
 
   def H(colour: Colour): Character =
@@ -437,7 +438,7 @@ object Character {
         Line(fromX = 0.5d, fromY = 0.5d, toX = 0.5d, toY = -0.5d, colour = colour, showCone = false, showVectorInfo = false), //right
         Line(fromX = -0.5d, fromY = 0.5d, toX = -0.5d, toY = -0.5d, colour = colour, showCone = false, showVectorInfo = false) //left
       ),
-      points = Array.empty
+      points = Array.empty[Point]
     )
 
   def I(colour: Colour): Character =
@@ -447,7 +448,7 @@ object Character {
         Line(fromX = 0d, fromY = 0.5d, toX = 0d, toY = -0.5d, colour = colour, showCone = false, showVectorInfo = false), //mid
         Line(fromX = 0.5d, fromY = -0.5d, toX = -0.5d, toY = -0.5d, colour = colour, showCone = false, showVectorInfo = false), //bottom
       ),
-      points = Array.empty
+      points = Array.empty[Point]
     )
 
   def J(colour: Colour): Character =
@@ -458,7 +459,7 @@ object Character {
         Line(fromX = 0.1d, fromY = 0.5d, toX = 0.1d, toY = -0.5d, colour = colour, showCone = false, showVectorInfo = false), //mid
         Line(fromX = -0.5d, fromY = 0d, toX = -0.5d, toY = -0.3d, colour = colour, showCone = false, showVectorInfo = false) //left
       ),
-      points = Array.empty
+      points = Array.empty[Point]
     )
 
   def K(colour: Colour): Character =
@@ -468,7 +469,7 @@ object Character {
         Line(fromX = -0.5d, fromY = 0d, toX = 0.5d, toY = 0.5d, colour = colour, showCone = false, showVectorInfo = false), //upper
         Line(fromX = -0.5d, fromY = 0d, toX = 0.5d, toY = -0.5d, colour = colour, showCone = false, showVectorInfo = false), //lower
       ),
-      points = Array.empty
+      points = Array.empty[Point]
     )
 
   def L(colour: Colour): Character =
@@ -477,7 +478,7 @@ object Character {
         Line(fromX = 0.5d, fromY = -0.5d, toX = -0.5d, toY = -0.5d, colour = colour, showCone = false, showVectorInfo = false), //bottom
         Line(fromX = -0.5d, fromY = 0.5d, toX = -0.5d, toY = -0.5d, colour = colour, showCone = false, showVectorInfo = false) //left
       ),
-      points = Array.empty
+      points = Array.empty[Point]
     )
 
   def M(colour: Colour): Character =
@@ -488,7 +489,7 @@ object Character {
         Line(fromX = -0.5d, fromY = 0.5d, toX = 0d, toY = 0d, colour = colour, showCone = false, showVectorInfo = false), //mid left
         Line(fromX = 0.5d, fromY = 0.5d, toX = 0d, toY = 0d, colour = colour, showCone = false, showVectorInfo = false), //mid right
       ),
-      points = Array.empty
+      points = Array.empty[Point]
     )
 
   def N(colour: Colour): Character =
@@ -498,7 +499,7 @@ object Character {
         Line(fromX = -0.5d, fromY = 0.5d, toX = -0.5d, toY = -0.5d, colour = colour, showCone = false, showVectorInfo = false), //left
         Line(fromX = -0.5d, fromY = 0.5d, toX = 0.5d, toY = -0.5d, colour = colour, showCone = false, showVectorInfo = false), //bottom
       ),
-      points = Array.empty
+      points = Array.empty[Point]
     )
 
   def O(colour: Colour): Character =
@@ -513,7 +514,7 @@ object Character {
         Line(fromX = -0.5d, fromY = 0.3d, toX = -0.5d, toY = -0.3d, colour = colour, showCone = false, showVectorInfo = false), //left
         Line(fromX = 0.3d, fromY = -0.5d, toX = 0.5d, toY = -0.3d, colour = colour, showCone = false, showVectorInfo = false) //bottom to right
       ),
-      points = Array.empty
+      points = Array.empty[Point]
     )
 
   def P(colour: Colour): Character =
@@ -526,19 +527,19 @@ object Character {
         Line(fromX = 0.5d, fromY = 0.3d, toX = 0.5d, toY = 0.2d, colour = colour, showCone = false, showVectorInfo = false), //right
         Line(fromX = -0.5d, fromY = 0.5d, toX = -0.5d, toY = -0.5d, colour = colour, showCone = false, showVectorInfo = false) //left
       ),
-      points = Array.empty
+      points = Array.empty[Point]
     )
 
   def Q(colour: Colour): Character =
     Character(
       O(colour).lines :+ Line(fromX = 0.2d, fromY = -0.2d, toX = 0.7d, toY = -0.7d, colour = colour, showCone = false, showVectorInfo = false), //comma
-      points = Array.empty
+      points = Array.empty[Point]
     )
 
   def R(colour: Colour): Character =
     Character(
       P(colour).lines :+ Line(fromX = 0d, fromY = 0d, toX = 0.5d, toY = -0.5d, colour = colour, showCone = false, showVectorInfo = false), //bottom cut
-      points = Array.empty
+      points = Array.empty[Point]
     )
 
   def S(colour: Colour): Character =
@@ -556,7 +557,7 @@ object Character {
         Line(fromX = -0.5d, fromY = 0.1d, toX = -0.5d, toY = 0.4d, colour = colour, showCone = false, showVectorInfo = false), //left
         Line(fromX = 0.5d, fromY = -0.4d, toX = 0.3d, toY = -0.5d, colour = colour, showCone = false, showVectorInfo = false), //right to bottom
       ),
-      points = Array.empty
+      points = Array.empty[Point]
     )
 
   def T(colour: Colour): Character =
@@ -565,7 +566,7 @@ object Character {
         Line(fromX = 0.5d, fromY = 0.5d, toX = -0.5d, toY = 0.5d, colour = colour, showCone = false, showVectorInfo = false), //top
         Line(fromX = 0d, fromY = 0.5d, toX = 0d, toY = -0.5d, colour = colour, showCone = false, showVectorInfo = false), //mid
       ),
-      points = Array.empty
+      points = Array.empty[Point]
     )
 
   def U(colour: Colour): Character =
@@ -577,7 +578,7 @@ object Character {
         Line(fromX = -0.5d, fromY = 0.5d, toX = -0.5d, toY = -0.3d, colour = colour, showCone = false, showVectorInfo = false), //left
         Line(fromX = 0.3d, fromY = -0.5d, toX = 0.5d, toY = -0.3d, colour = colour, showCone = false, showVectorInfo = false) //bottom to right
       ),
-      points = Array.empty
+      points = Array.empty[Point]
     )
 
   def V(colour: Colour): Character =
@@ -586,7 +587,7 @@ object Character {
         Line(fromX = 0.5d, fromY = 0.5d, toX = 0d, toY = -0.5d, colour = colour, showCone = false, showVectorInfo = false), //right
         Line(fromX = -0.5d, fromY = 0.5d, toX = 0d, toY = -0.5d, colour = colour, showCone = false, showVectorInfo = false) //left
       ),
-      points = Array.empty
+      points = Array.empty[Point]
     )
 
   def W(colour: Colour): Character =
@@ -597,7 +598,7 @@ object Character {
         Line(fromX = 0.5d, fromY = 0.5d, toX = 0.25d, toY = -0.5d, colour = colour, showCone = false, showVectorInfo = false), //right
         Line(fromX = 0.25d, fromY = -0.5d, toX = 0d, toY = 0d, colour = colour, showCone = false, showVectorInfo = false), //right to mid
       ),
-      points = Array.empty
+      points = Array.empty[Point]
     )
 
   def X(colour: Colour): Character =
@@ -606,7 +607,7 @@ object Character {
         Line(fromX = -0.5d, fromY = 0.5d, toX = 0.5d, toY = -0.5d, colour = colour, showCone = false, showVectorInfo = false), //left to right
         Line(fromX = 0.5d, fromY = 0.5d, toX = -0.5d, toY = -0.5d, colour = colour, showCone = false, showVectorInfo = false), //right to left
       ),
-      points = Array.empty
+      points = Array.empty[Point]
     )
 
   def Y(colour: Colour): Character =
@@ -616,7 +617,7 @@ object Character {
         Line(fromX = 0.5d, fromY = 0.5d, toX = 0d, toY = 0d, colour = colour, showCone = false, showVectorInfo = false), //top
         Line(fromX = 0d, fromY = 0d, toX = 0d, toY = -0.5d, colour = colour, showCone = false, showVectorInfo = false), //top
       ),
-      points = Array.empty
+      points = Array.empty[Point]
     )
 
   def Z(colour: Colour): Character =
@@ -626,7 +627,7 @@ object Character {
         Line(fromX = 0.5d, fromY = -0.5d, toX = -0.5d, toY = -0.5d, colour = colour, showCone = false, showVectorInfo = false), //bottom
         Line(fromX = 0.5d, fromY = 0.5d, toX = -0.5d, toY = -0.5d, colour = colour, showCone = false, showVectorInfo = false), //right to left
       ),
-      points = Array.empty
+      points = Array.empty[Point]
     )
 
   def line(colour: Colour): Character =
@@ -634,7 +635,7 @@ object Character {
       Array(
         Line(fromX = 0d, fromY = 1d, toX = 0d, toY = -1d, colour = colour, showCone = false, showVectorInfo = false), //mid
       ),
-      points = Array.empty
+      points = Array.empty[Point]
     )
 }
 

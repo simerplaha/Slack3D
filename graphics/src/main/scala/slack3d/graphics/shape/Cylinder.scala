@@ -29,8 +29,8 @@ object Cylinder {
 
     val unitCircle: Circle = Circle.xz(colour, radius, sectors)
 
-    val head = unitCircle + Vector3(0d, 0.5d, 0.0d)
-    val base = unitCircle + Vector3(0d, -0.5d, 0.0d)
+    val head = unitCircle + Vector3[Double](0d, 0.5d, 0.0d)
+    val base = unitCircle + Vector3[Double](0d, -0.5d, 0.0d)
 
     val planes =
       head.triangles.zip(base.triangles) map {

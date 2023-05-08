@@ -76,7 +76,7 @@ object Circle {
     Matrix3.rotatorY[Double](Math.toRadians(90d)) * Circle.xy(colour, radius, triangles)
 }
 
-case class Circle private(center: Vector3[Double],
+case class Circle (center: Vector3[Double],
                           triangles: Array[Triangle],
                           flipNormal: Boolean) extends NormalisableShape {
 
